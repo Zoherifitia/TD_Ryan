@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -97,6 +98,10 @@ public class EmployeeMapper {
                 .phones(employee.getPhones().stream().map(phoneMapper::toView).toList())
                 .positions(employee.getPositions())
                 .salary(employee.getSalary())
+                .age(calculAge(employee.getBirthDate()))
                 .build();
+    }
+    private Integer calculAge(LocalDate birthdate){
+        return LocalDate.now().getYear() - birthdate.getYear();
     }
 }
