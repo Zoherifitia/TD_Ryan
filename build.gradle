@@ -32,6 +32,9 @@ dependencies {
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation group: 'org.xhtmlrenderer', name: 'flying-saucer-pdf', version: '9.1.22'
+
+	implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
 }
 
 tasks.named('test') {
