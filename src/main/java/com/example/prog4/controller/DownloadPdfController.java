@@ -1,5 +1,6 @@
 package com.example.prog4.controller;
 
+import com.example.prog4.config.CompanyConf;
 import com.example.prog4.controller.mapper.EmployeeMapper;
 import com.example.prog4.model.Employee;
 import com.example.prog4.service.EmployeeService;
@@ -27,6 +28,7 @@ public class DownloadPdfController {
         Employee toShow = employeeMapper.toView(employeeService.getOne(eId));
         Map<String, Object> data = new HashMap<>();
         data.put("employee", toShow);
+        data.put("company",new CompanyConf());
         ByteArrayInputStream exportedData = exportPdfService.exportReceivePdf("pdf", data);
         response.setContentType("application/octet-stream");
         response.setHeader("Content-Disposition", "attachment; filename=view.pdf");

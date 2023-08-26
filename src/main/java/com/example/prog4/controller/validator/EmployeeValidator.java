@@ -71,6 +71,9 @@ public class EmployeeValidator {
         if (!isNotNullAndNotBlank(employee.getCnaps())) {
             error.append("Cnaps is mandatory. ");
         }
+        if (employee.getSalary() == null){
+            error.append("Salary is mandatory");
+        }
         if (!error.isEmpty()) {
             throw new BadRequestException(error.toString());
         }

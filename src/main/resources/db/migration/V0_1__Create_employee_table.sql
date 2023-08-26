@@ -33,7 +33,8 @@ create table if not exists "employee"
     csp                 csp     not null,
     image               text,
     professional_email  varchar not null unique,
-    address             varchar not null
+    address             varchar not null,
+    salary              bigint  default 0
 );
 
 CREATE SEQUENCE if not exists employ_ref_sequence

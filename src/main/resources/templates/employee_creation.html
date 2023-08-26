@@ -26,7 +26,7 @@
             <input required name="address" th:field="*{address}" class="form-control" id="inputAddress">
         </div>
         <div class="col-lg-4 col-md-6">
-            <label for="image" class="form-label">Address</label>
+            <label for="image" class="form-label">Image</label>
             <input name="address" type="file" th:field="*{image}" class="form-control" id="image">
         </div>
         <div class="col-lg-4 col-md-6">
@@ -112,6 +112,11 @@
                 </div>
             </div>
             <button type="button" class="btn btn-info" th:onclick="addPosition()">Add Position</button>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <label for="salary" class="form-label">Salary</label>
+            <input required id="salary" type="number" min="0" name="salary" th:field="*{salary}"
+                   class="form-control">
         </div>
         <div class="col-12 my-3"></div>
         <div class="col-12">

@@ -35,5 +35,28 @@
         <p id="cnaps" th:text="*{employee.cnaps}" type="text" class="form-control show-fields"></p>
     </div>
 </div>
+<div>
+    <div>
+        <img th:src="${company.logo}" class="company-logo" alt="logo"/>
+    </div>
+    <div>
+        <h3 class="mx-3 text-white" th:text="${company.name}"></h3>
+        <p><strong>NIF:</strong> <span th:text="${company.taxIdentity.nif}"></span></p>
+        <p><strong>RCS:</strong> <span th:text="${company.taxIdentity.rcs}"></span></p>
+        <p><strong>Address:</strong> <span th:text="${company.address}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${company.email}"></span></p>
+        <p><strong>Phone:</strong></p>
+        <ul class="list-unstyled" th:each="phone : ${company.phones}">
+            <li th:text="${phone.value}"></li>
+        </ul>
+    </div>
+    <div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+            <label for="salary" class="form-label text-black-50">Salary</label>
+            <p id="salary" type="number" th:text="*{employee.salary + ' Ar/mounth'}"
+               class="form-control show-fields"></p>
+        </div>
+    </div>
+</div>
 </body>
 </html>
