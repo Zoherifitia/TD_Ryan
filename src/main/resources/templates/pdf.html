@@ -11,84 +11,93 @@
             display: grid;
             grid-template-columns: 80px 200px auto 40px;
             margin-bottom: 10px;
+            width: 100%;
         }
-        .container .inner {
-            display: inline-block; /* Disposer les éléments horizontalement */
-            padding: 10px; /* Espacement interne pour une meilleure apparence */
-            border: 1px solid #000; /* Bordure pour visualisation */
-            margin-right: 10px; /* Espacement horizontal entre les éléments internes */
+        table {
+            width: 100%;
+            border-collapse: collapse;
         }
-
-        .container .inner:last-child {
-            margin-right: 0; /* Supprimer la marge du dernier élément */
+        .image-column {
+            width: 30%;
+            vertical-align: top;
+        }
+        .content-column {
+            width: 70%;
+            vertical-align: top;
+        }
+        .logo-column{
+            width: 20%;
+            vertical-align: top;
+        }
+        .company-content-column{
+            width: 40%;
+            vertical-align: top;
+        }
+        .contact-column{
+            width: 40%;
+            vertical-align: top;
+        }
+        .company-content{
+            border-top: 1px solid #000;
         }
     </style>
 </head>
 <body>
 <h1>View Employee</h1>
 <div class="container">
-    <div class="inner">
-        <img th:src="${employee.stringImage}" width="70" alt="no image"/>
-    </div>
-    <div class="inner">
+    <table>
+        <tr>
+            <td class="image-column">
+                <div class="">
+                    <img th:src="${employee.stringImage}" width="70" alt="no image"/>
+                </div>
+            </td>
+            <td class="content-column">
+                <p id="registrationNumber" th:text="*{'Registration number : '+employee.registrationNumber}" type="number"></p>
+
+                <p id="lastName" th:text="*{'Last name : '+employee.lastName}" type="text" class=""></p>
+
+                <p id="firstName" th:text="*{'First name : '+employee.firstName}" type="text" class=""></p>
+
+                <p id="age" th:text="*{'age : ' +employee.age}" type="number" class=""></p>
+
+                <p id="entranceDate" th:text="*{'Entrance date : ' +employee.entranceDate}" type="date" class=""></p>
+
+                <p id="departureDate" th:text="*{'Departure date : ' +employee.departureDate}" type="date" class=""></p>
+
+                <p id="cnaps" th:text="*{'CNAPS : '+employee.cnaps}" type="text" class=""></p>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="container">
     <div class="">
-        <label for="registrationNumber">Registration number :</label>
-        <p id="registrationNumber" th:text="*{employee.registrationNumber}" type="number"></p>
-    </div>
-    <div class="">
-        <label for="lastName" class="">Last name :</label>
-        <p id="lastName" th:text="*{employee.lastName}" type="text" class=""></p>
-    </div>
-    <div class="">
-        <label for="firstName" class="">First name :</label>
-        <p id="firstName" th:text="*{employee.firstName}" type="text"
-           class=""></p>
-    </div>
-    <div class="">
-        <label for="age" class="">age :</label>
-        <p id="age" th:text="*{employee.age}" type="number"
-           class=""></p>
-    </div>
-    <div class="">
-        <label for="entranceDate" class="">Entrance date :</label>
-        <p id="entranceDate" th:text="*{employee.entranceDate}" type="date"
-           class=""></p>
-    </div>
-    <div class="">
-        <label for="departureDate" class="">Departure date :</label>
-        <p id="departureDate" th:text="*{employee.departureDate}" type="date"
-           class=""></p>
-    </div>
-    <div class="">
-        <label for="cnaps" class="">CNAPS number :</label>
-        <p id="cnaps" th:text="*{employee.cnaps}" type="text" class=""></p>
-    </div>
+        <h3>Salary information</h3>
+        <p>Salary : <span th:text="*{employee.salary + ' Ar/mounth'}"></span></p>
     </div>
 </div>
 <div class="container">
-    <div class="">
-        <label for="salary" class="">Salary :</label>
-        <p id="salary" type="number" th:text="*{employee.salary + ' Ar/mounth'}"
-           class=""></p>
-    </div>
-</div>
-<div class="container">
-    <div class="inner">
-        <img th:src="${company.logo}" class="logo" alt="logo" width="50"/>
-    </div>
-    <div class="inner">
-        <h3 class="" th:text="${company.name}" ></h3>
-        <p><strong>NIF:</strong> <span th:text="${company.taxIdentity.nif}"></span></p>
-        <p><strong>RCS:</strong> <span th:text="${company.taxIdentity.stat}"></span></p>
-    </div>
-    <div class="inner">
-        <p><strong>Address:</strong> <span th:text="${company.address}"></span></p>
-        <p><strong>Phone:</strong></p>
-        <ul class="list-unstyled" th:each="phone : ${company.phones}">
-            <li th:text="${phone.value}"></li>
-        </ul>
-        <p><strong>Email:</strong> <span th:text="${company.email}"></span></p>
-    </div>
+    <table class="company-content">
+        <tr>
+            <td class="logo-column">
+                <img th:src="${company.logo}" class="logo" alt="logo" width="50"/>
+            </td>
+            <td class="company-content-column">
+            <h3 class="" th:text="${company.name}" ></h3>
+            <p>NIF: <span th:text="${company.taxIdentity.nif}"></span></p>
+            <p>STAT: <span th:text="${company.taxIdentity.stat}"></span></p>
+            </td>
+            <td class="contact-column">
+            <p>Address: <span th:text="${company.address}"></span></p>
+            <p>Phone: </p>
+            <ul class="list-unstyled" th:each="phone : ${company.phones}">
+                <li th:text="${phone.value}"></li>
+            </ul>
+            <p>Email: <span th:text="${company.email}"></span></p>
+            </td>
+        </tr>
+    </table>
 </div>
 </body>
 </html>
