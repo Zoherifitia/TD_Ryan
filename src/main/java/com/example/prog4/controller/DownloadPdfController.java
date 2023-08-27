@@ -24,7 +24,7 @@ public class DownloadPdfController {
     private EmployeeService employeeService;
     private EmployeeMapper employeeMapper;
     @GetMapping("/download-view/{eId}")
-    public void downloadReceipt(HttpServletResponse response , @PathVariable String eId) throws IOException {
+    public void downloadView(HttpServletResponse response , @PathVariable String eId) throws IOException {
         Employee toShow = employeeMapper.toView(employeeService.getOne(eId));
         Map<String, Object> data = new HashMap<>();
         data.put("employee", toShow);

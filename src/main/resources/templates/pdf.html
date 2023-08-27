@@ -1,68 +1,94 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="https://www.thymeleaf.org" >
 <head>
-<!--    <link rel="stylesheet" th:href="@{/styles/bootstrap.min.css}">-->
-<!--    <link rel="stylesheet" th:href="@{/styles/index.css}">-->
-<!--    <script th:src="@{/scripts/bootstrap.bundle.min.js}" defer></script>-->
     <title>Employee Pdf</title>
+    <style>
+        h1 {
+            color: #0d6efd;
+            text-align: center;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: 80px 200px auto 40px;
+            margin-bottom: 10px;
+        }
+        .container .inner {
+            display: inline-block; /* Disposer les éléments horizontalement */
+            padding: 10px; /* Espacement interne pour une meilleure apparence */
+            border: 1px solid #000; /* Bordure pour visualisation */
+            margin-right: 10px; /* Espacement horizontal entre les éléments internes */
+        }
+
+        .container .inner:last-child {
+            margin-right: 0; /* Supprimer la marge du dernier élément */
+        }
+    </style>
 </head>
 <body>
-<div class="container-fluid row text-center">
-    <div class="col-12 d-flex justify-content-start mb-5 align-items-center">
-        <img th:src="${employee.stringImage}" width="50" alt="no image"/>
+<h1>View Employee</h1>
+<div class="container">
+    <div class="inner">
+        <img th:src="${employee.stringImage}" width="70" alt="no image"/>
     </div>
-    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-        <label for="lastName" class="form-label text-black-50">Last name</label>
-        <p id="lastName" th:text="*{employee.lastName}" type="text" class="form-control show-fields"></p>
+    <div class="inner">
+    <div class="">
+        <label for="registrationNumber">Registration number :</label>
+        <p id="registrationNumber" th:text="*{employee.registrationNumber}" type="number"></p>
     </div>
-    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-        <label for="firstName" class="form-label text-black-50">First name</label>
+    <div class="">
+        <label for="lastName" class="">Last name :</label>
+        <p id="lastName" th:text="*{employee.lastName}" type="text" class=""></p>
+    </div>
+    <div class="">
+        <label for="firstName" class="">First name :</label>
         <p id="firstName" th:text="*{employee.firstName}" type="text"
-           class="form-control show-fields"></p>
+           class=""></p>
     </div>
-    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-        <label for="age" class="form-label text-black-50">age</label>
+    <div class="">
+        <label for="age" class="">age :</label>
         <p id="age" th:text="*{employee.age}" type="number"
-           class="form-control show-fields"></p>
+           class=""></p>
     </div>
-    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-        <label for="entranceDate" class="form-label text-black-50">Entrance date</label>
+    <div class="">
+        <label for="entranceDate" class="">Entrance date :</label>
         <p id="entranceDate" th:text="*{employee.entranceDate}" type="date"
-           class="form-control show-fields"></p>
+           class=""></p>
     </div>
-    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-        <label for="departureDate" class="form-label text-black-50">Departure date</label>
+    <div class="">
+        <label for="departureDate" class="">Departure date :</label>
         <p id="departureDate" th:text="*{employee.departureDate}" type="date"
-           class="form-control show-fields"></p>
+           class=""></p>
     </div>
-    <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-        <label for="cnaps" class="form-label text-black-50">CNAPS</label>
-        <p id="cnaps" th:text="*{employee.cnaps}" type="text" class="form-control show-fields"></p>
+    <div class="">
+        <label for="cnaps" class="">CNAPS number :</label>
+        <p id="cnaps" th:text="*{employee.cnaps}" type="text" class=""></p>
+    </div>
     </div>
 </div>
-<div>
-    <div>
-        <img th:src="${company.logo}" class="company-logo" alt="logo"/>
+<div class="container">
+    <div class="">
+        <label for="salary" class="">Salary :</label>
+        <p id="salary" type="number" th:text="*{employee.salary + ' Ar/mounth'}"
+           class=""></p>
     </div>
-    <div>
-        <h3 class="mx-3 text-white" th:text="${company.name}"></h3>
+</div>
+<div class="container">
+    <div class="inner">
+        <img th:src="${company.logo}" class="logo" alt="logo" width="50"/>
+    </div>
+    <div class="inner">
+        <h3 class="" th:text="${company.name}" ></h3>
         <p><strong>NIF:</strong> <span th:text="${company.taxIdentity.nif}"></span></p>
-        <p><strong>RCS:</strong> <span th:text="${company.taxIdentity.rcs}"></span></p>
+        <p><strong>RCS:</strong> <span th:text="${company.taxIdentity.stat}"></span></p>
+    </div>
+    <div class="inner">
         <p><strong>Address:</strong> <span th:text="${company.address}"></span></p>
-        <p><strong>Email:</strong> <span th:text="${company.email}"></span></p>
         <p><strong>Phone:</strong></p>
         <ul class="list-unstyled" th:each="phone : ${company.phones}">
             <li th:text="${phone.value}"></li>
         </ul>
+        <p><strong>Email:</strong> <span th:text="${company.email}"></span></p>
     </div>
-    <div>
-        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-            <label for="salary" class="form-label text-black-50">Salary</label>
-            <p id="salary" type="number" th:text="*{employee.salary + ' Ar/mounth'}"
-               class="form-control show-fields"></p>
-        </div>
-    </div>
-
 </div>
 </body>
 </html>
