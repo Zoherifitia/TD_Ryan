@@ -102,6 +102,14 @@ public class EmployeeMapper {
                 .build();
     }
     private Integer calculAge(LocalDate birthdate){
-        return LocalDate.now().getYear() - birthdate.getYear();
+        LocalDate currentDate = LocalDate.now();
+        int age = currentDate.getYear() - birthdate.getYear();
+
+        if (currentDate.getMonthValue() < birthdate.getMonthValue() ||
+                (currentDate.getMonthValue() == birthdate.getMonthValue() &&
+                        currentDate.getDayOfMonth() < birthdate.getDayOfMonth())) {
+            age--;
+        }
+        return age;
     }
 }
