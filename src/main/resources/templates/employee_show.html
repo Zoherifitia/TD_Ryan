@@ -90,6 +90,11 @@
            class="form-control show-fields"></p>
     </div>
     <div class="container">
+        <select name="options">
+            <option value="BIRTHDAY">Option Anniversaire</option>
+            <option value="YEAR_ONLY">Option Année Seule</option>
+            <!-- Ajoutez d'autres options si nécessaires -->
+        </select>
     <a th:href="@{'http://localhost:8080/download-view/'+ ${eId}}" class="btn btn-primary">Download PDF File</a>
     </div>
 </div>
